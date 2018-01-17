@@ -23,7 +23,7 @@ kismet_ui_tabpane.AddTab({
 	createCallback: function(div) {
     $(document).ready(function(){
       var search = document.getElementsByTagName("input")[0].value;
-      $('#foxfinder').append('<input id="foxsearch" type="text" style="margin: 1px;"> Insert MAC</input>')
+      $('#foxfinder').append('<span>Insert MAC: <input id="foxsearch" type="text" size="13"><span id="UUIDS"></span></span>')
       $('#foxfinder').append('<div id="foxfreqmap"></div>')
       $('#foxfinder').append('<div id="foxfinderchart" style="height: 70%; width:95%;"></div>')
       $('#foxfinder').append('<div id="foxfinderwarn"></div')
@@ -35,7 +35,8 @@ kismet_ui_tabpane.AddTab({
         var sigchart = Morris.Line({
           element: 'foxfinderchart',
           resize: true,
-          hideHover: true,
+          smooth: false,
+          //hideHover: true,
           xLabels: 'Packets',
           parseTime: false,
           data: dps,
@@ -47,7 +48,7 @@ kismet_ui_tabpane.AddTab({
         var dataLength = 100; // number of dataPoints visible at any point
 
       $(window).ready( function() {
-       setInterval(getTarget, 1000);
+       setInterval(getTarget, 450);
       });
 
       function getTarget() {
@@ -68,15 +69,17 @@ kismet_ui_tabpane.AddTab({
               var type = devs[x]['kismet.device.base.type'];
               var mac = devs[x]['kismet.device.base.macaddr'];
               var lastrssi = devs[x]['kismet.device.base.signal']['kismet.common.signal.last_signal_dbm']; //Last signal dBm
+              $('#UUIDS').empty()
               for (var a in seenby){
                 var seenbyuuid = seenby[a]['kismet.common.seenby.uuid']
                 var seenbyrssi = seenby[a]['kismet.common.seenby.signal']['kismet.common.signal.last_signal_dbm']
                 var seenbypackets = seenby[a]['kismet.common.seenby.num_packets']
+                $('#UUIDS').append('<span value="'+seenbyrssi+'" style="border: solid 1px; margin: 1px; padding: 1px;"><i class="fa fa-eye" aria-hidden="true"></i> '+seenbyuuid+" Packets: "+seenbypackets+" Signal: "+seenbyrssi+'</span>')
               }
               $('#foxfreqmap').empty()
               $('#foxfinderwarn').empty()
               for (var i in freqmap){
-                $('#foxfreqmap').append('<span style="border: solid 1px; margin: 1px; padding: 1px;"><i class="fa fa-signal" aria-hidden="true"></i>'+" "+i+": "+freqmap[i]+'</span>')
+                $('#foxfreqmap').append('<span style="border: solid 1px; margin: 1px; padding: 1px;"><i class="fa fa-signal" aria-hidden="true"></i>'+" Channel "+kismet_ui.GetPhyConvertedChannel("IEEE802.11", i)+": "+freqmap[i]+'</span>')
               }
 
               if (packets == packetsold){
@@ -90,7 +93,6 @@ kismet_ui_tabpane.AddTab({
                   dps.shift();
                 }
                 sigchart.setData(dps)
-                console.log(dps)
                 packetsold = packets
               }
             }// end of for

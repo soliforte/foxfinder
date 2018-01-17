@@ -6,7 +6,7 @@ https://github.com/kismetwireless/kismet.git
 
 # Installation
 clone this repo.
-```cd foxfinder
-sudo make install```
+```cd foxfinder```
+```sudo make install```
 
 Happy hunting.

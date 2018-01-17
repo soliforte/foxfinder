@@ -1,7 +1,12 @@
-# aircrack-ui
-A User Interface for the Aircrack suite, folded into Kismet
+# Fox-Finder
+A User-interface plugin for kismet that will help you find things.
 
-Currently, only the UI portion is written.
+Requires the most current version of kismet located over at:
+https://github.com/kismetwireless/kismet.git
 
-Work is commencing on the python webserver.
+# Installation
+clone this repo.
+```cd foxfinder
+sudo make install```
 
+Happy hunting.

@@ -14,8 +14,7 @@ clone this repo.
 Happy hunting.
 
 ## Roadmap:
-* Convert frequencies to channel numbers.
-* Make frequency map clicky
-* Warn user that interface(s) are hopping.
-* Display graphline per interface.
+* Convert frequencies to channel numbers. --DONE
+* Make frequency map clicky	--DONE
+* Warn user that interface(s) are hopping. --DONE (sort of)
 * REGEX validation of input. Currently just parses a 404

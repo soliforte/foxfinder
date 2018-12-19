@@ -23,12 +23,12 @@ kismet_ui_tabpane.AddTab({
 	createCallback: function(div) {
     $(document).ready(function(){
       var search = document.getElementsByTagName("input")[0].value;
-      $('#foxfinder').append('<div style="display: table">Insert MAC: <input id="foxsearch" type="text" size="13" style="display: table-cell;" /><button id="popDF" style="display: table-cell">DF</button><div id="UUIDS" style="display: table-cell"></div></div>')
-      $('#popDF').on("click", popDFModal)
+      $('#foxfinder').append('<div style="display: table">Insert MAC: <input id="foxsearch" type="text" size="13" style="display: table-cell;" /><div id="UUIDS" style="display: table-cell"></div></div>') //<button id="popDF" style="display: table-cell">DF</button>
+      //$('#popDF').on("click", popDFModal)
       $('#foxfinder').append('<div id="foxfreqmap"></div>')
       $('#foxfinder').append('<div id="foxfinderchart" style="height: 70%; width:95%; border: 1px solid black;"></div>')
       $('#foxfinder').append('<div id="foxfinderwarn"></div')
-      $('#foxfinder').append('<div id="dfModal" title="FoxFinder DF"><canvas id="lobCanvas" width="300" height="300">Your browser does not support the HTML5 canvas tag.</canvas></div>')
+      //$('#foxfinder').append('<div id="dfModal" title="FoxFinder DF"><canvas id="lobCanvas" width="300" height="300">Your browser does not support the HTML5 canvas tag.</canvas></div>')
 
       var lastsearch = ""
       var packetsold = 0
@@ -60,18 +60,18 @@ kismet_ui_tabpane.AddTab({
 
       // DF vars and stuff:
 
-      var canvas = document.getElementById("lobCanvas");
-      var ctx = canvas.getContext("2d");
-      var radius = canvas.height / 2;
-      ctx.translate(radius, radius);
-      radius = radius * 0.90
+      //var canvas = document.getElementById("lobCanvas");
+      //var ctx = canvas.getContext("2d");
+      //var radius = canvas.height / 2;
+      //ctx.translate(radius, radius);
+      //radius = radius * 0.90
 
-      function df(){ //pass the lob arg later on.
-        drawFace(ctx, radius)
-        drawTime(ctx, radius); //lob will also go here.
-      }
+      //function df(){ //pass the lob arg later on.
+      //  drawFace(ctx, radius)
+      //  drawTime(ctx, radius); //lob will also go here.
+      //}
 
-      function drawFace(ctx, radius) {
+      /**function drawFace(ctx, radius) {
           var grad;
 
           ctx.beginPath();
@@ -108,7 +108,7 @@ kismet_ui_tabpane.AddTab({
           ctx.lineTo(0, -length);
           ctx.stroke();
           ctx.rotate(-pos);
-      }
+      }**/
 
       function getTarget() {
         var search = document.getElementById("foxsearch").value;

@@ -136,7 +136,7 @@ kismet_ui_tabpane.AddTab({
                 var seenbyuuid = seenby[a]['kismet.common.seenby.uuid']
                 var seenbyrssi = seenby[a]['kismet.common.seenby.signal']['kismet.common.signal.last_signal']
                 var seenbypackets = seenby[a]['kismet.common.seenby.num_packets']
-                df() //This will take an arg called lob.
+                //df() //This will take an arg called lob.
                 $('#UUIDS').append('<span value="'+seenbyrssi+'" style="border: solid 1px; margin: 1px; padding: 1px;"><i class="fa fa-eye" aria-hidden="true"></i> '+seenbyuuid+" Packets: "+seenbypackets+" Signal: "+seenbyrssi+'</span>')
               }
               $('#foxfreqmap').empty()
